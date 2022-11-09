@@ -40,16 +40,21 @@ class MainVC: UIViewController{
     
     func searchAirports(){
         let apiClient = APIClient()
-        apiClient.getAirports(latitud: String(coordenadas.latitude), longitud: String(coordenadas.longitude), radio: lblRadius.text ?? "1") { [weak self] (list) in
-            DispatchQueue.main.async {
-                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC") as! TabBarVC
-                vc.coordenadasUser = self?.coordenadas ?? kCLLocationCoordinate2DInvalid
-                vc.listAirports = list
-                vc.selectKm = self?.aRadius ?? 1
-                self?.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+        
+        /*
+         apiClient.getAirports(latitud: String(coordenadas.latitude), longitud: String(coordenadas.longitude), radio: lblRadius.text ?? "1") { [weak self] (list) in
+             DispatchQueue.main.async {
+                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                 let vc = storyboard.instantiateViewController(withIdentifier: "TabBarVC") as! TabBarVC
+                 vc.coordenadasUser = self?.coordenadas ?? kCLLocationCoordinate2DInvalid
+                 vc.listAirports = list
+                 vc.selectKm = self?.aRadius ?? 1
+                 self?.navigationController?.pushViewController(vc, animated: true)
+             }
+         }*/
+         
+        let check = apiClient.getLista(latitud: String(coordenadas.latitude), longitud: String(coordenadas.longitude), radio: lblRadius.text ?? "1")
+        print(check)
     }
 }
 

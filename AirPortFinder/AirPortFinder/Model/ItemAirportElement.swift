@@ -8,12 +8,19 @@
 import Foundation
 
 struct ItemAirportElement: Codable {
-    var iataCode, icaoCode, name, alpha2CountryCode: String
-    var latitude, longitude: Double
+    let iataCode: String
+    let icaoCode: String?
+    let name: String
+    let alpha2CountryCode: Alpha2CountryCode
+    let latitude, longitude: Double
 
     enum CodingKeys: String, CodingKey {
         case iataCode, icaoCode, name
         case alpha2CountryCode = "alpha2countryCode"
         case latitude, longitude
     }
+}
+
+enum Alpha2CountryCode: String, Codable {
+    case us = "US"
 }
